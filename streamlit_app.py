@@ -42,28 +42,31 @@ streamlit.dataframe(fruits_to_show)
 #streamlit.header("The fruit load list contains:")
 #streamlit.dataframe(my_data_rows)
 streamlit.header("Fruityvice Fruit Advice!") 
-def get_fruityvice_data(this_fruit_choice):
-    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+this_fruit_choice)
-    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-    return fruityvice_normalized
+#def get_fruityvice_data(this_fruit_choice):
+#    fruityvice_response = requests.get("https://fruityvice.com/api/fruit" + this_fruit_choice)
+#    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+#    return fruityvice_normalized
 try:
     fruit_choice = streamlit.text_input('What fruit would you like information about?')
     if not fruit_choice:
         streamlit.error("Please select a fruit to get information.")
     else:
-        back_from_function = request.get("https://fruityvice.com/api/fruit/" + fruit_choice) 
-        streamlit.dataframe(back_from_function)
+   #     back_from_function = request.get("https://fruityvice.com/api/fruit/" + fruit_choice) 
+   #     streamlit.dataframe(back_from_function)
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+        fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+        streamlit.dataframe(fruityvice_normalized)
 except URLError as e:
     streamlit.error()
 
-fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
-streamlit.write('The user entered ', fruit_choice)
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+#fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
+#streamlit.write('The user entered ', fruit_choice)
+#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 #streamlit.text(fruityvice_response.json())
 # write your own comment -what does the next line do? 
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+#fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do?
-streamlit.dataframe(fruityvice_normalized)
+#streamlit.dataframe(fruityvice_normalized)
 def get_fruit_load_list():
     with my_cnx.cursor() as my_cur:
         my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
