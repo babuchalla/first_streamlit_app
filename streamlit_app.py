@@ -65,7 +65,7 @@ except URLError as e:
 #fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do?
 #streamlit.dataframe(fruityvice_normalized)
-streamlit.stop()
+
 def get_fruit_load_list():
     with my_cnx.cursor() as my_cur:
         my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
