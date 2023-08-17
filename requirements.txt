@@ -1,7 +1,2 @@
 # requirements.txt
-altair
-pandas
-streamlit
-snowflake
-charset-normalizer
 snowflake-connector-python
